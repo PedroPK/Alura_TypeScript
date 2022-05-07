@@ -14,17 +14,23 @@ export class NegociacaoController {
             this.aInputData         =   document.querySelector("#data");
             this.aInputQuantidade   =   document.querySelector("#quantidade");
             this.aInputValor        =   document.querySelector("#valor");
-            
-            this.aNegociacoesView.update();
+
+            this.aNegociacoesView.update(this.aListaNegociacoes);
         }
 
         adiciona(): void {
+            // Capture fields from View and creates a new Negociation
             const negociacao = 
                 this.criarNegociacao();
 
+            // Clean up the View's Form from previous data
             this.limparFormulario();
 
+            // Inserts the new Negociation in the List
             this.aListaNegociacoes.adiciona(negociacao);
+
+            // Updates the View with the new Negociation
+            this.aNegociacoesView.update(this.aListaNegociacoes);
 
             console.log(negociacao);
             console.log(this.aListaNegociacoes.lista());

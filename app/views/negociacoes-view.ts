@@ -1,3 +1,5 @@
+import { ListaNegociacoes } from "../models/listaNegociacoes.js";
+
 export class NegociacoesView {
 
     private aElement:   HTMLElement;
@@ -6,7 +8,7 @@ export class NegociacoesView {
         this.aElement   =   document.querySelector(pSeletor);
     }
 
-    template(): string {
+    template(pListaNegociacoes: ListaNegociacoes): string {
         const result = `
             <table class="table table-hover table-bordered">
                 <thead>
@@ -17,7 +19,19 @@ export class NegociacoesView {
                     </tr>
                 </thead>
                 <tbody>
-
+                    ${
+                        pListaNegociacoes.lista().map(
+                            negociacao => {
+                                return `
+                                    <tr>
+                                        <td>?</td>
+                                        <td>${negociacao.quantidade}</td>
+                                        <td>${negociacao.valor}</td>
+                                    </tr>
+                                `
+                            }
+                        ).join("")      // To convert the Array in a single entry, and without any separator caracter
+                    }
                 </tbody>
             </table>
         `;
@@ -25,7 +39,9 @@ export class NegociacoesView {
         return result;
     }
 
-    update(): void {
-        this.aElement.innerHTML = this.template();
+    update(pListaNegociacoes: ListaNegociacoes): void {
+        const template = this.template(pListaNegociacoes);
+        console.log(template);
+        this.aElement.innerHTML = template;
     }
 }
