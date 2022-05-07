@@ -1,15 +1,15 @@
-import { Negociacao }           from './models/negociacao.js';
+import { Negociacao }		   from './models/negociacao.js';
 import { NegociacaoController } from './controllers/negociacao-controller.js';
-import { NegociacoesView }      from './views/negociacoes-view.js';
+import { NegociacoesView }	  from './views/negociacoes-view.js';
 
-const negociacao    = new Negociacao(new Date(), 10, 100);
-const controller    = new NegociacaoController();
+const negociacao	= new Negociacao(new Date(), 10, 100);
+const controller	= new NegociacaoController();
 
-const form          = document.querySelector(".form");
+const form		  = document.querySelector(".form");
 form.addEventListener(
-    "submit", 
-    event => {
-        event.preventDefault();
-        controller.adiciona();
-    }
+	"submit", 
+	event => {
+		event.preventDefault();
+		controller.adiciona();
+	}
 );

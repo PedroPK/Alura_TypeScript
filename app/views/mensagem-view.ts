@@ -1,22 +1,18 @@
-export class MensagemView {
+import { View } from "./view.js";
 
-    private aElement: HTMLElement;
+export class MensagemView extends View{
 
-    constructor(pSelector: string) {
-        this.aElement   =   document.querySelector(pSelector);
-    }
+	template( pMessage: string ): string {
+		const result = `
+			<p class="alert alert-info">${pMessage}</p>
+		`;
 
-    template( pMessage: string ): string {
-        const result = `
-            <p class="alert alert-info">${pMessage}</p>
-        `;
+		return result;
+	}
 
-        return result;
-    }
-
-    update( pMessage: string ): void {
-        const template = this.template( pMessage );
-        this.aElement.innerHTML = template;
-    }
+	update( pMessage: string ): void {
+		const template = this.template( pMessage );
+		this.aElement.innerHTML = template;
+	}
 
 } 
