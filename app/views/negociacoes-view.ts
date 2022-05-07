@@ -21,10 +21,10 @@ export class NegociacoesView {
                 <tbody>
                     ${
                         pListaNegociacoes.lista().map(
-                            negociacao => {
+                            negociacao => {     // Intl is going to format the Date by the Locale configured
                                 return `
-                                    <tr>
-                                        <td>?</td>
+                                    <tr>    
+                                        <td>${new Intl.DateTimeFormat().format(negociacao.data)}</td>
                                         <td>${negociacao.quantidade}</td>
                                         <td>${negociacao.valor}</td>
                                     </tr>
