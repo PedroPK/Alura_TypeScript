@@ -1,17 +1,21 @@
 import { ListaNegociacoes } from "../models/listaNegociacoes.js";
 import { Negociacao } from "../models/negociacao.js";
+import { NegociacoesView } from "../views/negociacoes-view.js";
 
 export class NegociacaoController {
         private aInputData          :   HTMLInputElement;
         private aInputQuantidade    :   HTMLInputElement;
         private aInputValor         :   HTMLInputElement;
 
-        private aListaNegociacoes    =   new ListaNegociacoes;
+        private aListaNegociacoes   =   new ListaNegociacoes;
+        private aNegociacoesView    =   new NegociacoesView("#negociacoesView");
 
         constructor() {
             this.aInputData         =   document.querySelector("#data");
             this.aInputQuantidade   =   document.querySelector("#quantidade");
             this.aInputValor        =   document.querySelector("#valor");
+            
+            this.aNegociacoesView.update();
         }
 
         adiciona(): void {
