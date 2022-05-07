@@ -7,9 +7,9 @@ export class ListaNegociacoes{
         this.aNegociacoes.push(negociacao);
     }
 
-    lista(): Array<Negociacao> {
+    lista(): ReadonlyArray<Negociacao> {
                 // Spread Operator - Makes a Clone of the original Array
-        return [...this.aNegociacoes];
+        return this.aNegociacoes;
     }
 
 }

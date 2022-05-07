@@ -7,6 +7,6 @@ export class ListaNegociacoes {
     }
     lista() {
         // Spread Operator - Makes a Clone of the original Array
-        return [...this.aNegociacoes];
+        return this.aNegociacoes;
     }
 }
