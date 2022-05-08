@@ -1,4 +1,4 @@
-export class View<T> {
+export abstract class View<T> {
 
 	protected aElement:   HTMLElement;
 
@@ -6,9 +6,7 @@ export class View<T> {
 		this.aElement   =   document.querySelector(pSelector);
 	}
 
-	template( pMessage: T ): string {
-		throw Error("Inheritant class should implement this method");
-	}
+	abstract template( pMessage: T ): string;
 
 	update( pMessage: T ): void {
 		const template = this.template( pMessage );
