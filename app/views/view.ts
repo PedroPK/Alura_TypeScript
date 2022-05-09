@@ -6,7 +6,7 @@ export abstract class View<T> {
 		this.aElement   =   document.querySelector(pSelector);
 	}
 
-	abstract template( pMessage: T ): string;
+	protected abstract template( pMessage: T ): string;
 
 	update( pMessage: T ): void {
 		const template = this.template( pMessage );

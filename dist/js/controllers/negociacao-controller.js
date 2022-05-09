@@ -1,19 +1,28 @@
 import { ListaNegociacoes } from "../models/listaNegociacoes.js";
 import { Negociacao } from "../models/negociacao.js";
+import { MensagemView } from "../views/mensagem-view.js";
 import { NegociacoesView } from "../views/negociacoes-view.js";
 export class NegociacaoController {
     constructor() {
         this.aListaNegociacoes = new ListaNegociacoes;
         this.aNegociacoesView = new NegociacoesView("#negociacoesView");
+        this.aMessageView = new MensagemView("#mensagemView");
         this.aInputData = document.querySelector("#data");
         this.aInputQuantidade = document.querySelector("#quantidade");
         this.aInputValor = document.querySelector("#valor");
-        this.aNegociacoesView.update();
+        this.aNegociacoesView.update(this.aListaNegociacoes);
     }
     adiciona() {
+        // Capture fields from View and creates a new Negociation
         const negociacao = this.criarNegociacao();
+        // Clean up the View's Form from previous data
         this.limparFormulario();
+        // Inserts the new Negociation in the List
         this.aListaNegociacoes.adiciona(negociacao);
+        // Updates the View with the new Negociation
+        this.aNegociacoesView.update(this.aListaNegociacoes);
+        // Shows a success message to the User
+        this.aMessageView.update("Negociação adicionada com sucesso!");
         console.log(negociacao);
         console.log(this.aListaNegociacoes.lista());
     }
@@ -26,8 +35,8 @@ export class NegociacaoController {
     }
     converterData(pDataString) {
         /* Expressão Regular para localizar todos os Hífens,
-           usando g para indicar que é global
-       */
+        usando g para indicar que é global
+    */
         const regex = /-/g;
         const date = new Date(pDataString.replace(regex, ","));
         return date;
