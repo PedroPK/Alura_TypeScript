@@ -1,3 +1,4 @@
+import { WeekDay } from "../enums/weekDays.js";
 import { ListaNegociacoes } from "../models/listaNegociacoes.js";
 import { Negociacao } from "../models/negociacao.js";
 import { MensagemView } from "../views/mensagem-view.js";
@@ -14,10 +15,10 @@ export class NegociacaoController {
         this.updateView();
     }
     adiciona() {
-        // Capture fields from View and creates a new Negociation
+        // Capture fields from View and creates a new Negotiation
         const negociacao = this.criarNegociacao();
         /*  Workday Rule
-         *	 - Negociations are done only from Mondays to Fridays
+         *	 - Negotiations are done only from Mondays to Fridays
          *
          *	The getDay() method from Date returns a Number to represent the Day of Week
          *	It starts in 0 for Sunday and goes to 6 for Saturday
@@ -31,17 +32,17 @@ export class NegociacaoController {
         }
         // Clean up the View's Form from previous data
         this.limparFormulario();
-        // Inserts the new Negociation in the List
+        // Inserts the new Negotiation in the List
         this.aListaNegociacoes.adiciona(negociacao);
         this.aSucessfullAdded = true;
-        // Updates the View with new Negociation added
+        // Updates the View with new Negotiation added
         this.updateView();
     }
     /**
      * Evaluates if the Date is from Monday to Friday
      *
      * Workday Rule
-     *	 - Negociations are done only from Mondays to Fridays
+     *	 - Negotiations are done only from Mondays to Fridays
      *
      *	The getDay() method from Date returns a Number to represent the Day of Week
      *	It starts in 0 for Sunday and goes to 6 for Saturday
@@ -52,10 +53,8 @@ export class NegociacaoController {
      * @returns	boolean
      */
     isWorkday(pDate) {
-        const SUNDAY = 0;
-        const SATURDAY = 6;
-        const result = pDate.getDay() > SUNDAY &&
-            pDate.getDay() < SATURDAY;
+        const result = pDate.getDay() > WeekDay.SUNDAY &&
+            pDate.getDay() < WeekDay.SATURDAY;
         return result;
     }
     criarNegociacao() {
@@ -80,7 +79,7 @@ export class NegociacaoController {
         this.aInputData.focus();
     }
     updateView() {
-        // Updates the View with the new Negociation
+        // Updates the View with the new Negotiation
         this.aNegociacoesView.update(this.aListaNegociacoes);
         if (this.aSucessfullAdded) {
             const message = "Negociação adicionada com sucesso!";

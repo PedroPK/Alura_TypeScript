@@ -1,7 +1,8 @@
-import { ListaNegociacoes } from "../models/listaNegociacoes.js";
-import { Negociacao } from "../models/negociacao.js";
-import { MensagemView } from "../views/mensagem-view.js";
-import { NegociacoesView } from "../views/negociacoes-view.js";
+import { WeekDay }			from "../enums/weekDays.js";
+import { ListaNegociacoes }	from "../models/listaNegociacoes.js";
+import { Negociacao }		from "../models/negociacao.js";
+import { MensagemView }		from "../views/mensagem-view.js";
+import { NegociacoesView }	from "../views/negociacoes-view.js";
 
 export class NegociacaoController {
 
@@ -26,12 +27,12 @@ export class NegociacaoController {
 	}
 
 	public adiciona(): void {
-		// Capture fields from View and creates a new Negociation
+		// Capture fields from View and creates a new Negotiation
 		const negociacao = 
 			this.criarNegociacao();
 		
 		/*  Workday Rule
-		 *	 - Negociations are done only from Mondays to Fridays
+		 *	 - Negotiations are done only from Mondays to Fridays
 		 *	
 		 *	The getDay() method from Date returns a Number to represent the Day of Week
 		 *	It starts in 0 for Sunday and goes to 6 for Saturday
@@ -48,11 +49,11 @@ export class NegociacaoController {
 		// Clean up the View's Form from previous data
 		this.limparFormulario();
 
-		// Inserts the new Negociation in the List
+		// Inserts the new Negotiation in the List
 		this.aListaNegociacoes.adiciona(negociacao);
 		this.aSucessfullAdded	=	true;
 
-		// Updates the View with new Negociation added
+		// Updates the View with new Negotiation added
 		this.updateView();
 	}
 
@@ -60,7 +61,7 @@ export class NegociacaoController {
 	 * Evaluates if the Date is from Monday to Friday
 	 * 
 	 * Workday Rule
-	 *	 - Negociations are done only from Mondays to Fridays
+	 *	 - Negotiations are done only from Mondays to Fridays
 	 *	
 	 *	The getDay() method from Date returns a Number to represent the Day of Week
 	 *	It starts in 0 for Sunday and goes to 6 for Saturday
@@ -71,12 +72,9 @@ export class NegociacaoController {
 	 * @returns	boolean
 	 */
 	private isWorkday(pDate: Date): boolean {
-		const SUNDAY = 0;
-		const SATURDAY = 6;
-
 		const result = 
-			pDate.getDay() > SUNDAY &&
-			pDate.getDay() < SATURDAY;
+			pDate.getDay() > WeekDay.SUNDAY &&
+			pDate.getDay() < WeekDay.SATURDAY;
 		
 		return result;
 	}
@@ -115,7 +113,7 @@ export class NegociacaoController {
 	}
 
 	private updateView(): void {
-		// Updates the View with the new Negociation
+		// Updates the View with the new Negotiation
 		this.aNegociacoesView.update(this.aListaNegociacoes);
 
 		if ( this.aSucessfullAdded ) {
