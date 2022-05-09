@@ -16,7 +16,7 @@ export class NegociacaoController {
     }
     adiciona() {
         // Capture fields from View and creates a new Negotiation
-        const negociacao = this.criarNegociacao();
+        const negociacao = Negociacao.createNegociacao(this.aInputData.value, this.aInputQuantidade.value, this.aInputValor.value);
         /*  Workday Rule
          *	 - Negotiations are done only from Mondays to Fridays
          *
@@ -56,21 +56,6 @@ export class NegociacaoController {
         const result = pDate.getDay() > WeekDay.SUNDAY &&
             pDate.getDay() < WeekDay.SATURDAY;
         return result;
-    }
-    criarNegociacao() {
-        const date = this.converterData(this.aInputData.value);
-        const quantidade = parseInt(this.aInputQuantidade.value);
-        const valor = parseFloat(this.aInputValor.value);
-        const negociacao = new Negociacao(date, quantidade, valor);
-        return negociacao;
-    }
-    converterData(pDataString) {
-        /* Expressão Regular para localizar todos os Hífens,
-        usando g para indicar que é global
-    */
-        const regex = /-/g;
-        const date = new Date(pDataString.replace(regex, ","));
-        return date;
     }
     limparFormulario() {
         this.aInputData.value = "";
