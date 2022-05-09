@@ -19,10 +19,10 @@ export class NegociacaoController {
 		this.aInputQuantidade   =   document.querySelector("#quantidade");
 		this.aInputValor		=   document.querySelector("#valor");
 
-		this.aNegociacoesView.update(this.aListaNegociacoes);
+		this.updateView();
 	}
 
-	adiciona(): void {
+	public adiciona(): void {
 		// Capture fields from View and creates a new Negociation
 		const negociacao = 
 			this.criarNegociacao();
@@ -33,17 +33,14 @@ export class NegociacaoController {
 		// Inserts the new Negociation in the List
 		this.aListaNegociacoes.adiciona(negociacao);
 
-		// Updates the View with the new Negociation
-		this.aNegociacoesView.update(this.aListaNegociacoes);
-
-		// Shows a success message to the User
-		this.aMessageView.update("Negociação adicionada com sucesso!");
+		// Updates the View with new Negociation added
+		this.updateView();
 
 		console.log(negociacao);
 		console.log(this.aListaNegociacoes.lista());
 	}
 
-	criarNegociacao(): Negociacao {
+	private criarNegociacao(): Negociacao {
 		const date: Date	= this.converterData(   this.aInputData.value	   );
 		const quantidade	= parseInt(			 this.aInputQuantidade.value );
 		const valor		 = parseFloat(		   this.aInputValor.value	  )
@@ -58,7 +55,7 @@ export class NegociacaoController {
 		return negociacao;
 	}
 
-	converterData(pDataString: string): Date {
+	private converterData(pDataString: string): Date {
 			/* Expressão Regular para localizar todos os Hífens, 
 			usando g para indicar que é global
 		*/
@@ -68,11 +65,20 @@ export class NegociacaoController {
 			return date;
 	}
 
-	limparFormulario(): void {
+	private limparFormulario(): void {
 		this.aInputData.value		   =   "";
 		this.aInputQuantidade.value	 =   "";
 		this.aInputValor.value		  =   "";
 
 		this.aInputData.focus();
 	}
+
+	private updateView(): void {
+		// Updates the View with the new Negociation
+		this.aNegociacoesView.update(this.aListaNegociacoes);
+
+		// Shows a success message to the User
+		this.aMessageView.update("Negociação adicionada com sucesso!");
+	}
+
 }

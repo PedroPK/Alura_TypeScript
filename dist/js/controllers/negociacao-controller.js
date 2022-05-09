@@ -10,7 +10,7 @@ export class NegociacaoController {
         this.aInputData = document.querySelector("#data");
         this.aInputQuantidade = document.querySelector("#quantidade");
         this.aInputValor = document.querySelector("#valor");
-        this.aNegociacoesView.update(this.aListaNegociacoes);
+        this.updateView();
     }
     adiciona() {
         // Capture fields from View and creates a new Negociation
@@ -19,10 +19,8 @@ export class NegociacaoController {
         this.limparFormulario();
         // Inserts the new Negociation in the List
         this.aListaNegociacoes.adiciona(negociacao);
-        // Updates the View with the new Negociation
-        this.aNegociacoesView.update(this.aListaNegociacoes);
-        // Shows a success message to the User
-        this.aMessageView.update("Negociação adicionada com sucesso!");
+        // Updates the View with new Negociation added
+        this.updateView();
         console.log(negociacao);
         console.log(this.aListaNegociacoes.lista());
     }
@@ -46,5 +44,11 @@ export class NegociacaoController {
         this.aInputQuantidade.value = "";
         this.aInputValor.value = "";
         this.aInputData.focus();
+    }
+    updateView() {
+        // Updates the View with the new Negociation
+        this.aNegociacoesView.update(this.aListaNegociacoes);
+        // Shows a success message to the User
+        this.aMessageView.update("Negociação adicionada com sucesso!");
     }
 }
