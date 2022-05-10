@@ -13,8 +13,7 @@ export class NegociacoesView extends View {
 										<td>${negociacao.valor}</td>
 									</tr>
 								`;
-        }).join("") // To convert the Array in a single entry, and without any separator caracter
-        }
+        }).join("")}
 				</tbody>
 			</table>
 		`;

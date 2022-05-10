@@ -18,9 +18,9 @@ export class NegociacaoController {
 	private aMessageView		=   new MensagemView("#mensagemView");
 
 	constructor() {
-		this.aInputData		 	=   document.querySelector("#data");
-		this.aInputQuantidade   =   document.querySelector("#quantidade");
-		this.aInputValor		=   document.querySelector("#valor");
+		this.aInputData		 	=						document.querySelector("#data")			as HTMLInputElement;
+		this.aInputQuantidade   =						document.querySelector("#quantidade")	as HTMLInputElement;
+		this.aInputValor		=	<HTMLInputElement>	document.querySelector("#valor");
 		this.aSucessfullAdded	=	false;
 
 		this.updateView();
@@ -30,9 +30,9 @@ export class NegociacaoController {
 		// Capture fields from View and creates a new Negotiation
 		const negociacao = 
 			Negociacao.createNegociacao(
-				this.aInputData.value,
-				this.aInputQuantidade.value,
-				this.aInputValor.value
+				this.aInputData			.value,
+				this.aInputQuantidade	.value,
+				this.aInputValor		.value
 			);
 
 		/*  Workday Rule

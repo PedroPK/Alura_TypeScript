@@ -12,9 +12,6 @@ export class Negociacao {
         return negociacao;
     }
     static converterData(pDataString) {
-        /* Expressão Regular para localizar todos os Hífens,
-        usando g para indicar que é global
-        */
         const date = new Date(pDataString.replace("-", ","));
         return date;
     }

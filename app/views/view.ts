@@ -4,7 +4,12 @@ export abstract class View<T> {
 	private		aEscape:	boolean		=	false;
 
 	constructor(pSelector: string, pEscape?: boolean) {
-		this.aElement   =   document.querySelector(pSelector);
+		const element	=   document.querySelector(pSelector);
+		if ( element ) {
+			this.aElement   =   document.querySelector(pSelector)	as HTMLInputElement;
+		} else {
+			throw Error(`O Seletor ${pSelector} não foi encontrado no DOM.`);
+		}
 
 		if ( pEscape ) {
 			this.aEscape	=	pEscape;
