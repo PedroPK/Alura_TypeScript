@@ -1,3 +1,5 @@
+import { logExecutionTime } from "../decorators/log-execution-time.js";
+
 export abstract class View<T> {
 
 	protected	aElement:   HTMLElement;
@@ -18,6 +20,7 @@ export abstract class View<T> {
 
 	protected abstract template( pMessage: T ): string;
 
+	@logExecutionTime()
 	public update( pMessage: T ): void {
 		let template = this.template( pMessage );
 

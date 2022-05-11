@@ -1,3 +1,4 @@
+import { logExecutionTime } from "../decorators/log-execution-time.js";
 import { WeekDay }			from "../enums/weekDays.js";
 import { ListaNegociacoes }	from "../models/listaNegociacoes.js";
 import { Negociacao }		from "../models/negociacao.js";
@@ -26,6 +27,7 @@ export class NegociacaoController {
 		this.updateView();
 	}
 
+	@logExecutionTime()
 	public adiciona(): void {
 		// Capture fields from View and creates a new Negotiation
 		const negociacao = 
