@@ -1,4 +1,4 @@
-export function logExecutionTime() {
+export function logExecutionTime(pInSeconds: boolean = false) {
 	return function(
 		// Se Decorator for colocado em um Método Estático, será a Função Construtora da Classe. Se não, será o Prototype da Classe
 		// Ou seja, pode ser o Contrutor ou o Prototype da Classe
@@ -19,6 +19,13 @@ export function logExecutionTime() {
 		// Sobrescrevendo Método Original
 		//									Captura os Parâmetros, se existirem, do Método original recebe
 		pDescriptor.value		=	function(...args: Array<any>) {
+			let timeDivisor				=	1;
+			let timeUnit			=	'miliseconds';
+			if ( pInSeconds ) {
+				timeDivisor		=	1000;
+				timeUnit	=	'seconds';
+			}
+
 			const	beginningTime	=	performance.now();
 
 			// Invocar o Método Original
@@ -30,7 +37,7 @@ export function logExecutionTime() {
 			const	endTime			=	performance.now();
 
 			// Imprime tempo de Execução do Método decorado, em Segundos
-			console.log(`${pPropertyKey}(), Execution time: ${(endTime - beginningTime) / 1000}`);
+			console.log(`${pPropertyKey}(), Execution time: ${(endTime - beginningTime) / timeDivisor} ${timeUnit}`);
 
 			return resultado;
 		}

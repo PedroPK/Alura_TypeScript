@@ -27,7 +27,7 @@ export class NegociacaoController {
 		this.updateView();
 	}
 
-	@logExecutionTime()
+	@logExecutionTime(true)
 	public adiciona(): void {
 		// Capture fields from View and creates a new Negotiation
 		const negociacao = 
