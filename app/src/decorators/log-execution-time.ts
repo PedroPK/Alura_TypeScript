@@ -1,4 +1,8 @@
+
+// Wrapper function of Decorator, to allow it to receive Parameters
 export function logExecutionTime(pInSeconds: boolean = false) {
+	
+	// Basic function of Decorator
 	return function(
 		// Se Decorator for colocado em um Método Estático, será a Função Construtora da Classe. Se não, será o Prototype da Classe
 		// Ou seja, pode ser o Contrutor ou o Prototype da Classe
@@ -28,10 +32,10 @@ export function logExecutionTime(pInSeconds: boolean = false) {
 
 			const	beginningTime	=	performance.now();
 
-			// Invocar o Método Original
+			// Execute the Original Method
 			//
-			//										Contexto	
-			//												Array de Parâmetros
+			//										Context	
+			//												Parameters Array
 			const resultado = metodoOriginal.apply(	this,	args);
 
 			const	endTime			=	performance.now();
