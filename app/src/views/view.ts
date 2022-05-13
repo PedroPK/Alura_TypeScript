@@ -1,4 +1,5 @@
-import { logExecutionTime } from "../decorators/log-execution-time.js";
+import { inspect }			from "../decorators/inspector.js";
+import { logExecutionTime }	from "../decorators/log-execution-time.js";
 
 export abstract class View<T> {
 
@@ -18,9 +19,15 @@ export abstract class View<T> {
 		}
 	}
 
+	// Abstract Method that has to be implemented by all subclasses
 	protected abstract template( pMessage: T ): string;
 
+	/** 
+	 * Has 2 Decorators applyed in this Method, adding new funcionalities to it
+	 * The Declaration order of them chances the behavior of decorated method
+	 */ 
 	@logExecutionTime()
+	@inspect()
 	public update( pMessage: T ): void {
 		let template = this.template( pMessage );
 
