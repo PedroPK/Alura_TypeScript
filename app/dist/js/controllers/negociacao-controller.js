@@ -17,7 +17,7 @@ export class NegociacaoController {
         this.aListaNegociacoes = new ListaNegociacoes;
         this.aNegociacoesView = new NegociacoesView("#negociacoesView");
         this.aMessageView = new MensagemView("#mensagemView");
-        const printTypeOfInputs = false;
+        const printTypeOfInputs = true;
         if (printTypeOfInputs) {
             console.log(`${typeof document.querySelector("#data")}`);
             console.log(`${typeof document.querySelector("#quantidade")}`);

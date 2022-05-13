@@ -26,7 +26,7 @@ export class NegociacaoController {
 	private aMessageView		=   new MensagemView("#mensagemView");
 
 	constructor() {
-		const printTypeOfInputs		=	false;
+		const printTypeOfInputs		=	true;
 		if ( printTypeOfInputs ) {
 			console.log(`${typeof document.querySelector("#data")}`);
 			console.log(`${typeof document.querySelector("#quantidade")}`);
