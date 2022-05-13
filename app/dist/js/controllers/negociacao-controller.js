@@ -4,6 +4,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+import { domInjector } from "../decorators/dom-injector.js";
 import { inspect } from "../decorators/inspector.js";
 import { logExecutionTime } from "../decorators/log-execution-time.js";
 import { WeekDay } from "../enums/weekDays.js";
@@ -22,9 +23,6 @@ export class NegociacaoController {
             console.log(`${typeof document.querySelector("#quantidade")}`);
             console.log(`${typeof document.querySelector("#valor")}`);
         }
-        this.aInputData = document.querySelector("#data");
-        this.aInputQuantidade = document.querySelector("#quantidade");
-        this.aInputValor = document.querySelector("#valor");
         this.aSucessfullAdded = false;
         this.updateView();
     }
@@ -60,6 +58,15 @@ export class NegociacaoController {
         }
     }
 }
+__decorate([
+    domInjector("#data")
+], NegociacaoController.prototype, "aInputData", void 0);
+__decorate([
+    domInjector("#quantidade")
+], NegociacaoController.prototype, "aInputQuantidade", void 0);
+__decorate([
+    domInjector("#valor")
+], NegociacaoController.prototype, "aInputValor", void 0);
 __decorate([
     logExecutionTime(true),
     inspect
