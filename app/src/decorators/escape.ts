@@ -1,4 +1,4 @@
-export function escape() {
+export function escape(pPrintConsoleLog:	boolean	=	true) {
 	return function (
 		pTarget:		any,
 		pPropertyKey:	string,
@@ -13,7 +13,9 @@ export function escape() {
 
 			// Tests if its a String, before try to remove any <Script> tag
 			if ( typeof result	=== 'string' ) {
-				console.log(`@Escape in action at ${this.constructor.name} class, in the method ${pPropertyKey}()`)
+				if (pPrintConsoleLog) {
+					console.log(`@Escape in action at ${this.constructor.name} class, in the method ${pPropertyKey}()`)
+				}
 
 				// Execute the Escape funcionality
 				result	=	

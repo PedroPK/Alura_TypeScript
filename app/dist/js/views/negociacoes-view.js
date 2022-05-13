@@ -45,5 +45,5 @@ export class NegociacoesView extends View {
     }
 }
 __decorate([
-    escape()
+    escape(false)
 ], NegociacoesView.prototype, "template", null);

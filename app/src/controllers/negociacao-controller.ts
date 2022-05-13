@@ -1,3 +1,4 @@
+import { inspect } 			from "../decorators/inspector.js";
 import { logExecutionTime } from "../decorators/log-execution-time.js";
 import { WeekDay }			from "../enums/weekDays.js";
 import { ListaNegociacoes }	from "../models/listaNegociacoes.js";
@@ -19,6 +20,13 @@ export class NegociacaoController {
 	private aMessageView		=   new MensagemView("#mensagemView");
 
 	constructor() {
+		const printTypeOfInputs		=	false;
+		if ( printTypeOfInputs ) {
+			console.log(`${typeof document.querySelector("#data")}`);
+			console.log(`${typeof document.querySelector("#quantidade")}`);
+			console.log(`${typeof document.querySelector("#valor")}`);
+		}
+
 		this.aInputData		 	=						document.querySelector("#data")			as HTMLInputElement;
 		this.aInputQuantidade   =						document.querySelector("#quantidade")	as HTMLInputElement;
 		this.aInputValor		=	<HTMLInputElement>	document.querySelector("#valor");
@@ -27,7 +35,8 @@ export class NegociacaoController {
 		this.updateView();
 	}
 
-	@logExecutionTime(true)
+	@logExecutionTime(true)		// If this Decorator receive any Parameters, it should use Parenthesis
+	@inspect				// If this Decorator do not receive any Parameters, the Parenthesis cannot be used
 	public adiciona(): void {
 		// Capture fields from View and creates a new Negotiation
 		const negociacao = 

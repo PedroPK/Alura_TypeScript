@@ -21,8 +21,6 @@ export abstract class View<T> {
 	 * Has 2 Decorators applyed in this Method, adding new funcionalities to it
 	 * The Declaration order of them chances the behavior of decorated method
 	 */ 
-	@logExecutionTime()		// If this Decorator receive any Parameters, it should use Parenthesis
-	@inspect				// If this Decorator do not receive any Parameters, the Parenthesis cannot be used
 	public update( pMessage: T ): void {
 		let template = this.template( pMessage );
 
