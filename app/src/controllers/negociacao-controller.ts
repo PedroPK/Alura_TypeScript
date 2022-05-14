@@ -2,6 +2,7 @@ import { domInjector } 		from "../decorators/dom-injector.js";
 import { inspect } 			from "../decorators/inspector.js";
 import { logExecutionTime } from "../decorators/log-execution-time.js";
 import { WeekDay }			from "../enums/weekDays.js";
+import { DayNegotiation } 	from "../interfaces/day-negotiation.js";
 import { ListaNegociacoes }	from "../models/listaNegociacoes.js";
 import { Negociacao }		from "../models/negociacao.js";
 import { MensagemView }		from "../views/mensagem-view.js";
@@ -83,7 +84,7 @@ export class NegociacaoController {
 			.then(response => response.json())
 
 			// Convert the JSON into an Array
-			.then((data:	any[])	=> {
+			.then((data:	DayNegotiation[])	=> {
 
 					// Convert each Array's Element into a Negotiation
 					return data.map(
