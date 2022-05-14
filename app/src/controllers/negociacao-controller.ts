@@ -75,6 +75,10 @@ export class NegociacaoController {
 		this.updateView();
 	}
 
+	public import(): void {
+		alert("Import button pressed");
+	}
+
 	/**
 	 * Evaluates if the Date is from Monday to Friday
 	 * 

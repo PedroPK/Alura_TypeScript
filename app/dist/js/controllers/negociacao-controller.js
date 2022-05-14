@@ -39,6 +39,9 @@ export class NegociacaoController {
         this.aSucessfullAdded = true;
         this.updateView();
     }
+    import() {
+        alert("Import button pressed");
+    }
     isWorkday(pDate) {
         const result = pDate.getDay() > WeekDay.SUNDAY &&
             pDate.getDay() < WeekDay.SATURDAY;
