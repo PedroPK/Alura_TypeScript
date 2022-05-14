@@ -76,7 +76,35 @@ export class NegociacaoController {
 	}
 
 	public import(): void {
-		alert("Import button pressed");
+		// Asyncronous Request to this URL
+		fetch("http://localhost:8080/dados")
+
+			// Convert the Data fetched to a JSON Object
+			.then(response => response.json())
+
+			// Convert the JSON into an Array
+			.then((data:	any[])	=> {
+
+					// Convert each Array's Element into a Negotiation
+					return data.map(
+						todayData => {
+							return new Negociacao(
+								new Date(), 
+								todayData.vezes, 
+								todayData.montante)
+					})
+				}
+			)
+
+			// List of Negotiations
+			.then(todayNegotiations	=> {
+					for ( let negotiation of todayNegotiations ) {
+						this.aListaNegociacoes.adiciona(negotiation);
+					}
+					this.aNegociacoesView.update(this.aListaNegociacoes);
+				}
+			)
+		;
 	}
 
 	/**

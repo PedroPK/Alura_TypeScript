@@ -40,7 +40,19 @@ export class NegociacaoController {
         this.updateView();
     }
     import() {
-        alert("Import button pressed");
+        fetch("http://localhost:8080/dados")
+            .then(response => response.json())
+            .then((data) => {
+            return data.map(todayData => {
+                return new Negociacao(new Date(), todayData.vezes, todayData.montante);
+            });
+        })
+            .then(todayNegotiations => {
+            for (let negotiation of todayNegotiations) {
+                this.aListaNegociacoes.adiciona(negotiation);
+            }
+            this.aNegociacoesView.update(this.aListaNegociacoes);
+        });
     }
     isWorkday(pDate) {
         const result = pDate.getDay() > WeekDay.SUNDAY &&
