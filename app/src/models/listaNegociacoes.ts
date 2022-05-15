@@ -12,4 +12,14 @@ export class ListaNegociacoes{
 		return this.aNegociacoes;
 	}
 
+	public log(): void {
+		console.log(
+			this.toString()
+		);
+	}
+
+
+	public toString(): any {
+		return JSON.stringify(this.aNegociacoes, null, 4);
+	}
 }

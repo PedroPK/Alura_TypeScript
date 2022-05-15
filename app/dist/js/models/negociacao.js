@@ -22,4 +22,16 @@ export class Negociacao {
     get volume() {
         return this.quantidade * this.valor;
     }
+    log() {
+        console.log(this.toString());
+    }
+    toString() {
+        return `
+				Negociação
+				- Data: ${this.data}
+				- Quantidade: ${this.quantidade}
+				- Valor: ${this.valor}
+				- Volume: ${this.volume}
+			`;
+    }
 }

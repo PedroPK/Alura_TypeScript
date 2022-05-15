@@ -1,4 +1,4 @@
-import { escape } from "../decorators/escape.js";
+import { escape } 			from "../decorators/escape.js";
 import { ListaNegociacoes } from "../models/listaNegociacoes.js";
 import { View }			 	from "./view.js";
 

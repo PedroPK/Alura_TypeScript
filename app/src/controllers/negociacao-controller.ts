@@ -81,6 +81,10 @@ export class NegociacaoController {
 
 		// Updates the View with new Negotiation added
 		this.updateView();
+
+		// Log the Negotiation(s)
+		negociacao.log();
+		this.aListaNegociacoes.log();
 	}
 
 	public import(): void {

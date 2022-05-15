@@ -40,6 +40,8 @@ export class NegociacaoController {
         this.aListaNegociacoes.adiciona(negociacao);
         this.aSucessfullAdded = true;
         this.updateView();
+        negociacao.log();
+        this.aListaNegociacoes.log();
     }
     import() {
         this.aNegociacaoService.obterNegociacoes()

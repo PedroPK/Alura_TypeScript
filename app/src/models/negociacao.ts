@@ -45,4 +45,21 @@ export class Negociacao {
 	get volume() : number {
 		return this.quantidade * this.valor;
 	}
+
+	public log(): void {
+		console.log(
+			this.toString()
+		);
+	}
+
+
+	public toString(): any {
+		return `
+				Negociação
+				- Data: ${this.data}
+				- Quantidade: ${this.quantidade}
+				- Valor: ${this.valor}
+				- Volume: ${this.volume}
+			`;
+	}
 }

@@ -8,4 +8,10 @@ export class ListaNegociacoes {
     lista() {
         return this.aNegociacoes;
     }
+    log() {
+        console.log(this.toString());
+    }
+    toString() {
+        return JSON.stringify(this.aNegociacoes, null, 4);
+    }
 }
