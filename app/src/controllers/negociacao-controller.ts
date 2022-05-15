@@ -1,15 +1,16 @@
-import { domInjector } 		from "../decorators/dom-injector.js";
-import { inspect } 			from "../decorators/inspector.js";
-import { logExecutionTime } from "../decorators/log-execution-time.js";
-import { WeekDay }			from "../enums/weekDays.js";
-import { DayNegotiation } 	from "../interfaces/day-negotiation.js";
-import { ListaNegociacoes }	from "../models/listaNegociacoes.js";
-import { Negociacao }		from "../models/negociacao.js";
-import { MensagemView }		from "../views/mensagem-view.js";
-import { NegociacoesView }	from "../views/negociacoes-view.js";
+import { domInjector } 			from "../decorators/dom-injector.js";
+import { inspect } 				from "../decorators/inspector.js";
+import { logExecutionTime } 	from "../decorators/log-execution-time.js";
+import { WeekDay }				from "../enums/weekDays.js";
+import { ListaNegociacoes }		from "../models/listaNegociacoes.js";
+import { Negociacao }			from "../models/negociacao.js";
+import { NegotiationService } 	from "../services/negotiations-service.js";
+import { MensagemView }			from "../views/mensagem-view.js";
+import { NegociacoesView }		from "../views/negociacoes-view.js";
 
 export class NegociacaoController {
 
+	// DOM Elements
 	@domInjector("#data")
 	private aInputData		  	:   HTMLInputElement;
 
@@ -19,12 +20,18 @@ export class NegociacaoController {
 	@domInjector("#valor")
 	private aInputValor		 	:   HTMLInputElement;
 
+	// List of added Negotiations
 	private aListaNegociacoes   =   new ListaNegociacoes;
 
+	// Flag of Negotiation successfullu added
 	private aSucessfullAdded	:	boolean;
 	
+	// Views
 	private aNegociacoesView	=   new NegociacoesView("#negociacoesView");
 	private aMessageView		=   new MensagemView("#mensagemView");
+
+	// Service
+	private aNegociacaoService	=	new NegotiationService();
 
 	constructor() {
 		const printTypeOfInputs		=	true;
@@ -77,25 +84,7 @@ export class NegociacaoController {
 	}
 
 	public import(): void {
-		// Asyncronous Request to this URL
-		fetch("http://localhost:8080/dados")
-
-			// Convert the Data fetched to a JSON Object
-			.then(response => response.json())
-
-			// Convert the JSON into an Array
-			.then((data:	DayNegotiation[])	=> {
-
-					// Convert each Array's Element into a Negotiation
-					return data.map(
-						todayData => {
-							return new Negociacao(
-								new Date(), 
-								todayData.vezes, 
-								todayData.montante)
-					})
-				}
-			)
+		this.aNegociacaoService.obterNegociacoes()
 
 			// List of Negotiations
 			.then(todayNegotiations	=> {

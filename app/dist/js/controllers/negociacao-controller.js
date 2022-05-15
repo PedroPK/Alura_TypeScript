@@ -10,6 +10,7 @@ import { logExecutionTime } from "../decorators/log-execution-time.js";
 import { WeekDay } from "../enums/weekDays.js";
 import { ListaNegociacoes } from "../models/listaNegociacoes.js";
 import { Negociacao } from "../models/negociacao.js";
+import { NegotiationService } from "../services/negotiations-service.js";
 import { MensagemView } from "../views/mensagem-view.js";
 import { NegociacoesView } from "../views/negociacoes-view.js";
 export class NegociacaoController {
@@ -17,6 +18,7 @@ export class NegociacaoController {
         this.aListaNegociacoes = new ListaNegociacoes;
         this.aNegociacoesView = new NegociacoesView("#negociacoesView");
         this.aMessageView = new MensagemView("#mensagemView");
+        this.aNegociacaoService = new NegotiationService();
         const printTypeOfInputs = true;
         if (printTypeOfInputs) {
             console.log(`${typeof document.querySelector("#data")}`);
@@ -40,13 +42,7 @@ export class NegociacaoController {
         this.updateView();
     }
     import() {
-        fetch("http://localhost:8080/dados")
-            .then(response => response.json())
-            .then((data) => {
-            return data.map(todayData => {
-                return new Negociacao(new Date(), todayData.vezes, todayData.montante);
-            });
-        })
+        this.aNegociacaoService.obterNegociacoes()
             .then(todayNegotiations => {
             for (let negotiation of todayNegotiations) {
                 this.aListaNegociacoes.adiciona(negotiation);
