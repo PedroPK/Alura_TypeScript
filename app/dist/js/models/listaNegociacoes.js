@@ -8,6 +8,15 @@ export class ListaNegociacoes {
     lista() {
         return this.aNegociacoes;
     }
+    equals(pObject) {
+        let result = false;
+        const thisString = this.toString();
+        const pObjectString = pObject.toString();
+        if (thisString === pObjectString) {
+            result = true;
+        }
+        return result;
+    }
     log() {
         console.log(this.toString());
     }

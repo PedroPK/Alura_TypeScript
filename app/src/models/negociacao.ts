@@ -1,7 +1,6 @@
-import { Logable }		from "../interfaces/Logable.js";
-import { Stringible }	from "../interfaces/stringible.js";
+import { ModelObject }	from "../interfaces/model-object.js";
 
-export class Negociacao implements Stringible, Logable {
+export class Negociacao implements ModelObject<Negociacao> {
 	
 
 	constructor(
