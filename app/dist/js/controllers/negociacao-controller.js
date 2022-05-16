@@ -11,6 +11,7 @@ import { WeekDay } from "../enums/weekDays.js";
 import { ListaNegociacoes } from "../models/listaNegociacoes.js";
 import { Negociacao } from "../models/negociacao.js";
 import { NegotiationService } from "../services/negotiations-service.js";
+import { log } from "../utils/print.js";
 import { MensagemView } from "../views/mensagem-view.js";
 import { NegociacoesView } from "../views/negociacoes-view.js";
 export class NegociacaoController {
@@ -40,11 +41,18 @@ export class NegociacaoController {
         this.aListaNegociacoes.adiciona(negociacao);
         this.aSucessfullAdded = true;
         this.updateView();
-        negociacao.log();
-        this.aListaNegociacoes.log();
+        log(negociacao, this.aListaNegociacoes);
     }
     import() {
         this.aNegociacaoService.obterNegociacoes()
+            .then(todayNegotiations => {
+            return todayNegotiations.filter(todayNegotiation => {
+                return !this.aListaNegociacoes.lista()
+                    .some(negotiation => {
+                    return negotiation.equals(todayNegotiation);
+                });
+            });
+        })
             .then(todayNegotiations => {
             for (let negotiation of todayNegotiations) {
                 this.aListaNegociacoes.adiciona(negotiation);

@@ -1,4 +1,7 @@
-export class Negociacao {
+import { Logable }		from "../interfaces/Logable.js";
+import { Stringible }	from "../interfaces/stringible.js";
+
+export class Negociacao implements Stringible, Logable {
 	
 
 	constructor(
@@ -45,13 +48,12 @@ export class Negociacao {
 	get volume() : number {
 		return this.quantidade * this.valor;
 	}
-
+	
 	public log(): void {
 		console.log(
 			this.toString()
 		);
 	}
-
 
 	public toString(): any {
 		return `
@@ -62,4 +64,19 @@ export class Negociacao {
 				- Volume: ${this.volume}
 			`;
 	}
+
+	public equals( pNegotiation: Negociacao ): boolean {
+		let result = false;
+
+		if ( 
+			this.data.getDate()		===		pNegotiation.data.getDate()		&&
+			this.data.getMonth()	===		pNegotiation.data.getMonth()	&&
+			this.data.getFullYear()	===		pNegotiation.data.getFullYear()
+		) {
+			result	=	true;
+		}
+
+		return result
+	}
+
 }

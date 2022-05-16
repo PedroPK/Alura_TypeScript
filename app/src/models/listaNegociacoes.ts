@@ -1,6 +1,8 @@
-import { Negociacao } from "./negociacao.js";
+import { Logable }		from "../interfaces/Logable.js";
+import { Stringible }	from "../interfaces/stringible.js";
+import { Negociacao }	from "./negociacao.js";
 
-export class ListaNegociacoes{
+export class ListaNegociacoes implements Stringible, Logable {
 	private aNegociacoes: Negociacao[] = [];
 
 	adiciona(negociacao: Negociacao): void  {

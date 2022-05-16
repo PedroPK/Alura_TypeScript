@@ -34,4 +34,13 @@ export class Negociacao {
 				- Volume: ${this.volume}
 			`;
     }
+    equals(pNegotiation) {
+        let result = false;
+        if (this.data.getDate() === pNegotiation.data.getDate() &&
+            this.data.getMonth() === pNegotiation.data.getMonth() &&
+            this.data.getFullYear() === pNegotiation.data.getFullYear()) {
+            result = true;
+        }
+        return result;
+    }
 }
