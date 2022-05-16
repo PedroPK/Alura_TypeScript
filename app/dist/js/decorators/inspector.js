@@ -9,3 +9,4 @@ export function inspect(pTarget, pPropertyKey, pDescriptor) {
     };
     return pDescriptor;
 }
+//# sourceMappingURL=inspector.js.map

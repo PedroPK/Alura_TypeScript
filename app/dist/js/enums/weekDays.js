@@ -8,3 +8,4 @@ export var WeekDay;
     WeekDay[WeekDay["FRIDAY"] = 5] = "FRIDAY";
     WeekDay[WeekDay["SATURDAY"] = 6] = "SATURDAY";
 })(WeekDay || (WeekDay = {}));
+//# sourceMappingURL=weekDays.js.map

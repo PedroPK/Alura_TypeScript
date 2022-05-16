@@ -24,3 +24,4 @@ export class ListaNegociacoes {
         return JSON.stringify(this.aNegociacoes, null, 4);
     }
 }
+//# sourceMappingURL=listaNegociacoes.js.map

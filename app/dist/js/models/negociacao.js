@@ -44,3 +44,4 @@ export class Negociacao {
         return result;
     }
 }
+//# sourceMappingURL=negociacao.js.map

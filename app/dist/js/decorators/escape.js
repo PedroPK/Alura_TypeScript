@@ -15,3 +15,4 @@ export function escape(pPrintConsoleLog = true) {
         return pDescriptor;
     };
 }
+//# sourceMappingURL=escape.js.map

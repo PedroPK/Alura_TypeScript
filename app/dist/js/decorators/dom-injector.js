@@ -16,3 +16,4 @@ export function domInjector(pSelector, pPrintConsoleLogs = true) {
         Object.defineProperty(pTarget, pPropertyKey, { get: getter });
     };
 }
+//# sourceMappingURL=dom-injector.js.map
